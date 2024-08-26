@@ -1,5 +1,5 @@
 # SQL---Target-Case-Study
-Target SQL Business Case 
+Target SQL Business Case DATASET -[https://drive.google.com/drive/folders/1n1CrSW2NTiAa_W8OMfTsdfdAoIUisDpj?usp=share_link](url)
 
 Target is a globally renowned brand and a prominent retailer in the United States. Target makes itself a preferred shopping destination by offering outstanding value, inspiration, innovation and an exceptional guest experience that no other retailer can deliver.  
 
