@@ -1,0 +1,116 @@
+# 1. Get the time range between which the orders were placed
+SELECT
+  MIN(order_purchase_timestamp) AS fv,
+  MAX(order_purchase_timestamp) AS fr
+FROM
+  customer.orders;
+
+# 2. Count the Cities & States of customers who ordered during the given period.
+SELECT
+  COUNT(DISTINCT customer_city) AS count_city,
+  COUNT(DISTINCT customer_state) AS count_state
+FROM
+  customer.customers AS c
+INNER JOIN
+  customer.orders AS o
+ON
+  c.customer_id = o.customer_id
+WHERE
+  order_status = "delivered";
+
+# 3. Is there a growing trend in the no. of orders placed over the past years?
+SELECT
+  EXTRACT(YEAR
+  FROM
+    order_purchase_timestamp) AS year,
+  EXTRACT(MONTH
+  FROM
+    order_purchase_timestamp) AS month,
+  COUNT(order_id) AS count
+FROM
+  customer.orders
+WHERE
+  order_status = "delivered"
+GROUP BY
+  1,
+  2
+ORDER BY
+  1,
+  2;
+
+# 4. During what time of the day, do the Brazilian customers mostly place their orders? (Dawn, Morning, Afternoon or Night)   
+#0-6 hrs : Dawn 
+#7-12 hrs : Mornings 
+#13-18 hrs : Afternoon 
+#19-23 hrs : Night 
+#Hint: We want you to categorize the hours of a day into the given time brackets/ intervals and find out during which intervals the  #Brazilian customers usually order the most. 
+SELECT
+  (
+    CASE
+      WHEN (EXTRACT(HOUR FROM order_purchase_timestamp) >= 0) AND (EXTRACT(HOUR FROM order_purchase_timestamp) <= 6) THEN "Dawn"
+      WHEN (EXTRACT(HOUR
+      FROM
+        order_purchase_timestamp) >= 7)
+    AND (EXTRACT(HOUR
+      FROM
+        order_purchase_timestamp) <= 12) THEN "Mornings"
+      WHEN (EXTRACT(HOUR FROM order_purchase_timestamp) >= 13) AND (EXTRACT(HOUR FROM order_purchase_timestamp) <= 18) THEN "Afternoon"
+    ELSE
+    "Night"
+  END
+    ) AS tod,
+  COUNT(order_id) AS total_count
+FROM
+  customer.orders
+GROUP BY
+  1
+ORDER BY
+  2 DESC;
+
+# 5. Get the month on month no. of orders placed in each state. 
+SELECT
+  c.customer_state AS states,
+  EXTRACT(MONTH
+  FROM
+    o.order_purchase_timestamp) AS months,
+  COUNT(o.order_id) AS total_count
+FROM
+  customer.orders AS o
+INNER JOIN
+  customer.customers AS c
+ON
+  o.customer_id = c.customer_id
+GROUP BY
+  1,
+  2
+ORDER BY
+  3 DESC;
+
+# 6. Get the % increase in the cost of orders from year 2017 to 2018 (include months between Jan to Aug only).
+  # You can use the "payment_value" column in the payments table to get the cost of orders.
+WITH
+  cte AS (
+  SELECT
+    EXTRACT(YEAR
+    FROM
+      orders.order_purchase_timestamp) AS year_,
+    SUM(payments.payment_value) AS revenue
+  FROM
+    customer.orders AS orders
+  INNER JOIN
+    customer.payments AS payments
+  ON
+    orders.order_id = payments.order_id
+  WHERE
+    EXTRACT(MONTH
+    FROM
+      orders.order_purchase_timestamp) BETWEEN 0
+    AND 8
+  GROUP BY
+    year_)
+SELECT
+  *,
+  LAG(revenue,1) OVER(ORDER BY year_) AS pre_revenue,
+  (revenue - (LAG(revenue,1) OVER(ORDER BY year_)))/(LAG(revenue,1) OVER(ORDER BY year_))*100 AS increse_per
+FROM
+  cte
