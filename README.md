@@ -3,8 +3,14 @@ Target SQL Business Case DATASET -[https://drive.google.com/drive/folders/1n1CrS
 
 SQL Queries for Target Business Case: [https://drive.google.com/file/d/15bCtKFPM2bKu8MqqBxjuv_OjC0t06hxS/view?usp=share_link](https://drive.google.com/file/d/15bCtKFPM2bKu8MqqBxjuv_OjC0t06hxS/view?usp=share_link)
 
-Target is a globally renowned brand and a prominent retailer in the United States. Target makes itself a preferred shopping destination by offering outstanding value, inspiration, innovation and an exceptional guest experience that no other retailer can deliver.  
+# Project Title:
+Analysis of Target's E-commerce Operations in Brazil: Insights from Customer Orders, Payments, and Delivery Trends
 
-This particular business case focuses on the operations of Target in Brazil and provides insightful information about 100,000 orders placed between 2016 and 2018. The dataset offers a comprehensive view of various dimensions including the order status, price, payment and freight performance, customer location, product attributes, and customer reviews. 
+# Problem Statement:
+Analyzed Target’s operations in Brazil using a dataset of 100,000 orders (2016-2018) to extract insights on order trends, customer demographics, financial impact, and delivery efficiency.
 
-By analyzing this extensive dataset, it becomes possible to gain valuable insights into Target's operations in Brazil. The information can shed light on various aspects of the business, such as order processing, pricing strategies, payment and shipping efficiency, customer demographics, product characteristics, and customer satisfaction levels. 
+# Approach:
+Performed Exploratory Data Analysis (EDA), trend analysis, and customer segmentation. Analyzed order prices, freight charges, delivery times, and payment methods to assess operational and financial performance.
+
+# Potential Impact:
+Optimized delivery times, improved pricing strategies, enhanced customer satisfaction, and provided data-driven recommendations to boost operational efficiency and profitability in the Brazilian market.
