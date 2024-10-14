@@ -11,4 +11,4 @@ Analyzed Target’s operations in Brazil using a dataset of 100,000 orders (2016
 Performed Exploratory Data Analysis (EDA), trend analysis, and customer segmentation. Analyzed order prices, freight charges, delivery times, and payment methods to assess operational and financial performance.
 
 # Potential Impact:
-Optimized delivery times, improved pricing strategies, enhanced customer satisfaction, and provided data-driven recommendations to boost operational efficiency and profitability in the Brazilian market.
+Optimized delivery times, improved pricing strategies, enhanced customer satisfaction, and provided data-driven recommendations to boost operational efficiency and profitability in the Brazilian market. 
